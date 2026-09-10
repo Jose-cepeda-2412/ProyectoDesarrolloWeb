@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter 
 @Getter 
 @NoArgsConstructor 
-public class ServicioDisponiblesEspacio {
+public class ServicioDisponibleEspacio {
     //id espacio
     //id servicio
     @Id
@@ -22,7 +22,7 @@ public class ServicioDisponiblesEspacio {
     @Column (nullable = false)
     private String incluido;
 
-    public ServicioDisponiblesEspacio(String incluido){
+    public ServicioDisponibleEspacio(String incluido){
         this.incluido = incluido;
     }
 
