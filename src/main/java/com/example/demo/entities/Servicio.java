@@ -23,6 +23,8 @@ public class Servicio {
     private String descripcion;
     @Column (nullable = false)
     private Double precio;
+    @Column (nullable = false)
+    private Boolean activo;
 
     public Servicio(String nombre, String descripcion, Double precio){
         this.nombre = nombre;

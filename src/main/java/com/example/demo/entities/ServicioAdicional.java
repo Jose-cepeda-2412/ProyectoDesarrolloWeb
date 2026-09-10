@@ -13,37 +13,23 @@ import lombok.Setter;
 @Getter 
 @Setter 
 @NoArgsConstructor 
-public class Espacio {
+public class ServicioAdicional {
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @Column (nullable = false, length = 50)
     private String nombre;
-    @Column (nullable = false, length = 50)
-    private String tipo;
-    @Column (length = 200)
+    @Column (nullable = false, length = 200)
     private String descripcion;
     @Column (nullable = false)
-    private Integer capacidad;
-    @Column (nullable = false)
     private Double precio;
-    @Column (length = 200)
-    private String imagenUrl;
     @Column (nullable = false)
     private Boolean activo;
-    @Column (nullable = false)
-    private Servicio servicio;
 
-    public Espacio(String nombre, String tipo, String descripcion, Integer capacidad, Double precio, String imagenUrl, Boolean activo, Servicio servicio){
+    public ServicioAdicional(String nombre, String descripcion, Double precio, Boolean activo){
         this.nombre = nombre;
-        this.tipo = tipo;
         this.descripcion = descripcion;
-        this.capacidad = capacidad;
         this.precio = precio;
-        this.imagenUrl = imagenUrl;
         this.activo = activo;
-        this.servicio = servicio;
     }
-
-    
 }

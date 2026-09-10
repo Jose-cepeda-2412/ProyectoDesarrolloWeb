@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,14 +25,23 @@ public class Usuario {
     private String email;
     @Column (length = 20)
     private String telefono;
+    @Column (nullable = false, length = 100)    
+    private String contrasenia;
+    @Column (nullable = false, length = 50)
+    private String rol;
     @Column (nullable = false)
     private Boolean activo;
+    @Column (nullable = false)
+    private Date fechaRegistro;
 
 
-    public Usuario(String nombre, String email, String telefono, Boolean activo){
+    public Usuario(String nombre, String email, String telefono, String contrasenia, String rol, Boolean activo, Date fechaRegistro){
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
         this.activo = activo;
+        this.fechaRegistro = fechaRegistro;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,12 +24,29 @@ public class Reserva {
     @Column (nullable = false)
     private String fecha;
     @Column (nullable = false)
-    private String hora;
+    private String horaInicio;
+    @Column (nullable = false)
+    private String horaFin;
+    @Column (nullable = false)
+    private Boolean estado;
+    @Column (nullable = false)
+    private Date fechaSolitiud;
+    @Column (nullable = true, length = 200)
+    private String observaciones;
+    @Column (nullable = true)
+    private Double total;
 
-    public Reserva(Usuario usuario, String fecha, String hora){
+    public Reserva(Usuario usuario, String fecha, String horaInicio, String horaFin, Boolean estado, Date fechaSolitiud, String observaciones, Double total){
         this.usuario = usuario;
         this.fecha = fecha;
-        this.hora = hora;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.estado = estado;
+        this.fechaSolitiud = fechaSolitiud;
+        this.observaciones = observaciones;
+        this.total = total;
     }
     
 }
+
+
