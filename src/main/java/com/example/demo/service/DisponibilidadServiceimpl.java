@@ -14,7 +14,6 @@ public class DisponibilidadServiceimpl implements DisponibilidadService {
     @Autowired 
     private DisponibilidadRepository disponibilidadRepository;
 
-
     @Override
     public Disponibilidad findById(Long id){
         return disponibilidadRepository.findById(id).orElse(null);

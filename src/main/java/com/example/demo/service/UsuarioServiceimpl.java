@@ -46,7 +46,6 @@ public class UsuarioServiceimpl implements UsuarioService {
             usuario.setActivo(true);
             usuarioRepository.save(usuario);
         }
-        
     }
     
     
