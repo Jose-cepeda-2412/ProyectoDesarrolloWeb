@@ -1,12 +1,15 @@
 package com.example.demo.entities;
 
 import java.util.Date;
-
+import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,8 +22,7 @@ public class Reserva {
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column (nullable = false)
-    private Usuario usuario;
+
     @Column (nullable = false)
     private String fecha;
     @Column (nullable = false)
@@ -36,8 +38,16 @@ public class Reserva {
     @Column (nullable = true)
     private Double total;
 
-    public Reserva(Usuario usuario, String fecha, String horaInicio, String horaFin, Boolean estado, Date fechaSolitiud, String observaciones, Double total){
-        this.usuario = usuario;
+    @ManyToOne
+    private Usuario usuario; 
+
+    @OneToMany (mappedBy = "reserva")
+    private List<Servicio> servicio;
+
+    @OneToOne (mappedBy = "reserva")
+    private Pago pago;
+
+    public Reserva(String fecha, String horaInicio, String horaFin, Boolean estado, Date fechaSolitiud, String observaciones, Double total){
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;

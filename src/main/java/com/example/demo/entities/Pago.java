@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,9 @@ public class Pago {
     private String metodoPago;
     @Column (nullable = false)
     private Boolean estado;
+
+    @OneToOne 
+    private Reserva reserva;
 
     public Pago(Double monto, String metodoPago, Boolean estado){
         this.monto = monto;

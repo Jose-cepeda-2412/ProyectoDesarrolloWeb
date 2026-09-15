@@ -1,12 +1,14 @@
 package com.example.demo.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +35,8 @@ public class Usuario {
     private Boolean activo;
     @Column (nullable = false)
     private Date fechaRegistro;
+    @OneToMany (mappedBy = "usuario")
+    private List<Reserva> reserva;
 
 
     public Usuario(String nombre, String email, String telefono, String contrasenia, String rol, Boolean activo, Date fechaRegistro){

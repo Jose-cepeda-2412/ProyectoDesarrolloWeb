@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,10 +32,11 @@ public class Espacio {
     private String imagenUrl;
     @Column (nullable = false)
     private Boolean activo;
-    @Column (nullable = false)
+
+    @ManyToOne 
     private Servicio servicio;
 
-    public Espacio(String nombre, String tipo, String descripcion, Integer capacidad, Double precio, String imagenUrl, Boolean activo, Servicio servicio){
+    public Espacio(String nombre, String tipo, String descripcion, Integer capacidad, Double precio, String imagenUrl, Boolean activo){
         this.nombre = nombre;
         this.tipo = tipo;
         this.descripcion = descripcion;
@@ -42,7 +44,6 @@ public class Espacio {
         this.precio = precio;
         this.imagenUrl = imagenUrl;
         this.activo = activo;
-        this.servicio = servicio;
     }
 
     
