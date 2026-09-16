@@ -3,10 +3,12 @@ package com.example.demo.service;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Usuario;
 import com.example.demo.repository.UsuarioRepository;
 
+@Service 
 public class UsuarioServiceimpl implements UsuarioService {
 
     @Autowired 
@@ -29,20 +31,12 @@ public class UsuarioServiceimpl implements UsuarioService {
     }
 
     @Override
-    public void inactivo(Long id) {
+    public void cambiarEstado(Long id) {
         Usuario usuario = findById(id);
         if(usuario.getActivo() == true && usuario != null){
             usuario.setActivo(false);
             usuarioRepository.save(usuario);
-        }
-    }
-
-
-
-    @Override
-    public void activo(Long id) {
-        Usuario usuario = findById(id);
-        if(usuario.getActivo() == false && usuario != null){
+        }else if (usuario.getActivo() == false && usuario != null) {
             usuario.setActivo(true);
             usuarioRepository.save(usuario);
         }
