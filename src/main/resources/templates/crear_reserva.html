@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear reserva</title>
+  </head>
+  <body>
+    <h1>Crear reserva</h1>
+    <form
+      th:object="${reserva}"
+      th:action="@{/reserva/guardarReserva}"
+      method="post"
+    >
+      <label>Fecha</label>
+      <input type="date" th:field="*{fecha}" />
+      <br />
+      <label>Observaciones</label>
+      <input type="text" th:field="*{observaciones}" />
+      <br />
+      <label>Usuario a reservar</label>
+      <select th:field="*{usuario}">
+        <option
+          th:each="usuario : ${usuarios}"
+          th:value="${usuario.id}"
+          th:text="${usuario.nombre}"
+        ></option>
+      </select>
+      <br />
+      <label>Hora incio reserva</label>
+      <input type="time" th:field="*{horaInicio}" />
+      <br />
+      <label>Servicios</label>
+      <label th:each="servicio : ${servicios}">
+        <input
+          type="checkbox"
+          th:value="${servicio.id}"
+          th:field="*{servicios}"
+        />
+        <span th:text="${servicio.nombre}"></span>
+      </label>
+    </form>
+  </body>
+</html>

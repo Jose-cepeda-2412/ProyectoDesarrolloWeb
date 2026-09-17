@@ -38,10 +38,10 @@ public class Servicio {
     @OneToMany (mappedBy = "servicio")
     private List<Espacio> espacio;
 
-    public Servicio(String nombre, String descripcion, Double precio){
+    public Servicio(String nombre, String descripcion, Double precio, Boolean activo){
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-
+        this.activo = activo;
     }
 }

@@ -1,7 +1,12 @@
 package com.example.demo.entities;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.cglib.core.Local;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,15 +31,15 @@ public class Reserva {
     private Long id;
 
     @Column (nullable = false)
-    private String fecha;
+    private LocalDateTime fecha;
     @Column (nullable = false)
-    private String horaInicio;
+    private LocalTime horaInicio;
     @Column (nullable = false)
     private String horaFin;
     @Column (nullable = false)
     private Boolean estado;
     @Column (nullable = false)
-    private Date fechaSolitiud;
+    private Date fechaSolicitud;
     @Column (nullable = true, length = 200)
     private String observaciones;
     @Column (nullable = true)
@@ -49,12 +54,12 @@ public class Reserva {
     @OneToOne (mappedBy = "reserva")
     private Pago pago;
 
-    public Reserva(String fecha, String horaInicio, String horaFin, Boolean estado, Date fechaSolitiud, String observaciones, Double total){
+    public Reserva(LocalDateTime fecha, LocalTime horaInicio, String horaFin, Boolean estado, Date fechaSolicitud, String observaciones, Double total){
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.estado = estado;
-        this.fechaSolitiud = fechaSolitiud;
+        this.fechaSolicitud = fechaSolicitud;
         this.observaciones = observaciones;
         this.total = total;
     }

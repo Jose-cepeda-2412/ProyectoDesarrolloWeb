@@ -12,6 +12,7 @@
         <tr>
           <th>Fecha reserva</th>
           <th>Hora inicio</th>
+          <th>Hora fin</th>
           <th>Estado reserva</th>
           <th>Fecha solicitud</th>
           <th>Observaciones</th>
@@ -27,10 +28,9 @@
       </thead>
       <tbody>
         <tr th:each="reserva: ${reservas}">
-          <td th:text="${reserva.fechaInicio}"></td>
           <td th:text="${reserva.fecha}"></td>
           <td th:text="${reserva.horaInicio}"></td>
-          <td th:text="${reserva.fechaFin}"></td>
+          <td th:text="${reserva.horaFin}"></td>
           <td th:text="${reserva.estado}"></td>
           <td th:text="${reserva.fechaSolicitud}"></td>
           <td th:text="${reserva.observaciones}"></td>
@@ -45,17 +45,20 @@
             </span>
           </td>
           <td>
-            <a th:href="@{/reservas/modificarReserva/{id}(id =${reservas.id})}">
+            <a th:href="@{/reserva/modificarReserva/{id}(id =${reserva.id})}">
               <button type="button">Modificar reserva</button>
             </a>
           </td>
           <td>
-            <a th:href="@{/reservas/cambiarEstado/{id}(id =${reservas.id})}">
+            <a th:href="@{/reserva/cambiarEstado/{id}(id =${reserva.id})}">
               <button type="button">Modificar Estado reserva</button>
             </a>
           </td>
         </tr>
       </tbody>
     </table>
+    <a th:href="@{/reserva/crearReserva}">
+      <button type="button">Crear reserva</button>
+    </a>
   </body>
 </html>
