@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
@@ -31,15 +32,15 @@ public class Reserva {
     private Long id;
 
     @Column (nullable = false)
-    private LocalDateTime fecha;
+    private LocalDate fecha;
     @Column (nullable = false)
     private LocalTime horaInicio;
     @Column (nullable = false)
-    private String horaFin;
+    private LocalTime horaFin;
     @Column (nullable = false)
     private Boolean estado;
     @Column (nullable = false)
-    private Date fechaSolicitud;
+    private LocalDate fechaSolicitud;
     @Column (nullable = true, length = 200)
     private String observaciones;
     @Column (nullable = true)
@@ -54,7 +55,7 @@ public class Reserva {
     @OneToOne (mappedBy = "reserva")
     private Pago pago;
 
-    public Reserva(LocalDateTime fecha, LocalTime horaInicio, String horaFin, Boolean estado, Date fechaSolicitud, String observaciones, Double total){
+    public Reserva(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin, Boolean estado, LocalDate fechaSolicitud, String observaciones, Double total){
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;

@@ -1,9 +1,9 @@
 package com.example.demo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,6 @@ import com.example.demo.repository.EspacioRespository;
 import com.example.demo.repository.ReservaRepository;
 import com.example.demo.repository.ServicioRepository;
 import com.example.demo.repository.UsuarioRepository;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 import jakarta.transaction.Transactional;
 
 @Component //crear objeto tipo dataLoader
@@ -104,62 +101,64 @@ public class DataLoader implements CommandLineRunner{
         ));
         
         //creacion de reservas
+        // Creacion de reservas
+
         reservaRepository.save(new Reserva(
-            LocalDateTime.of(2026, 9, 18, 0, 0),
+            LocalDate.of(2026, 9, 18),
             LocalTime.of(9, 0),
-            "10:00",
+            LocalTime.of(10, 0),
             true,
-            new Date(),
+            LocalDate.now(),
             "Corte de cabello",
             35000.0
         ));
 
         reservaRepository.save(new Reserva(
-            LocalDateTime.of(2026, 9, 18, 0, 0),
+            LocalDate.of(2026, 9, 18),
             LocalTime.of(10, 30),
-            "11:30",
+            LocalTime.of(11, 30),
             true,
-            new Date(),
+            LocalDate.now(),
             "Corte y arreglo de barba",
             50000.0
         ));
 
         reservaRepository.save(new Reserva(
-            LocalDateTime.of(2026, 9, 19, 0, 0),
+            LocalDate.of(2026, 9, 19),
             LocalTime.of(14, 0),
-            "15:00",
+            LocalTime.of(15, 0),
             true,
-            new Date(),
+            LocalDate.now(),
             "Cliente solicita corte clásico",
             30000.0
         ));
 
         reservaRepository.save(new Reserva(
-            LocalDateTime.of(2026, 9, 19, 0, 0),
+            LocalDate.of(2026, 9, 19),
             LocalTime.of(16, 30),
-            "17:30",
+            LocalTime.of(17, 30),
             false,
-            new Date(),
+            LocalDate.now(),
             "Reserva pendiente de confirmación",
             45000.0
         ));
 
         reservaRepository.save(new Reserva(
-            LocalDateTime.of(2026, 9, 20, 0, 0),
+            LocalDate.of(2026, 9, 20),
             LocalTime.of(11, 0),
-            "12:00",
+            LocalTime.of(12, 0),
             true,
-            new Date(),
+            LocalDate.now(),
             "Corte degradado",
             40000.0
         ));
 
         reservaRepository.save(new Reserva(
-            LocalDateTime.of(2026, 9, 20, 0, 0),
+            LocalDate.of(2026, 9, 20),
             LocalTime.of(15, 0),
-            "16:00",
+            LocalTime.of(16, 0),
             true,
-            new Date(),
+            LocalDate.now(),
             "Corte y lavado",
             55000.0
         ));

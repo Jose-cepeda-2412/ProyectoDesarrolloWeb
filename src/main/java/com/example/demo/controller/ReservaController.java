@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +51,11 @@ public class ReservaController {
 
     @PostMapping("/guardarReserva")
     public String guardarReserva(@ModelAttribute ("reserva") Reserva reserva) {
-        
+        reserva.setHoraFin(LocalTime.of(19, 35));
+        reserva.setEstado(true);
+        reserva.setTotal(1.34);
+        reserva.setFechaSolicitud(LocalDate.now());
+        reservaService.save(reserva);
         return "redirect:/reserva";
     }
     
