@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -42,11 +44,26 @@ public class ServicioController {
 
     @PostMapping("/guardarServicio")
     public String guardarServicio(@ModelAttribute ("servicio") Servicio servicio) {    
-        servicio.setActivo(true);
-        servicio.setPrecio((Double) servicio.getPrecio());
+        if (servicio.getId() != null) {
+            Servicio datosServicio = servicioService.findById(servicio.getId());
+            servicio.setActivo(datosServicio.getActivo());
+            servicio.setPrecio((Double) servicio.getPrecio());
+        }else{
+            servicio.setActivo(true);
+            servicio.setPrecio((Double) servicio.getPrecio());
+        }
         servicioService.save(servicio);
         return "redirect:/servicios";
     }
+
+    @GetMapping("/modificarServicio/{id}")
+    public String modificarServicio(@PathVariable ("id") Long id, Model model) {
+        Servicio servicio = servicioService.findById(id);
+        model.addAttribute("servicio", servicio);
+        model.addAttribute("espacios", espacioService.findAll());
+        return "crear_servicio";
+    }
+    
     
     @GetMapping("cambiarEstado/{id}")
     public String cambiarEstado(@PathVariable ("id") Long id) {
