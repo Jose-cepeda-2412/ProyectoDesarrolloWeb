@@ -84,9 +84,6 @@ public class ReservaController {
     @GetMapping("/modificarReserva/{id}")
     public String modificarReserva(@PathVariable ("id") Long id, Model model) {
         Reserva reserva = reservaService.findById(id);
-        System.out.println("ID: " + reserva.getId());
-        System.out.println("FECHA: " + reserva.getFecha());
-        System.out.println("HORA INICIO: " + reserva.getHoraInicio());
         model.addAttribute("reserva", reserva);
         model.addAttribute("servicios", servicioService.findAll());
         model.addAttribute("usuarios", usuarioService.findAll());
