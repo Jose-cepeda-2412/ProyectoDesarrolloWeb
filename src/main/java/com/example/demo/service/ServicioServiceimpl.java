@@ -32,5 +32,18 @@ public class ServicioServiceimpl implements ServicioService {
         return servicioRepository.save(servicio);
         
     }
+
+    @Override 
+    public Servicio cambiarEstado(Long id){
+        Servicio servicio = findById(id);
+        if (servicio.getActivo() == false && servicio != null) {
+            servicio.setActivo(true);
+            servicioRepository.save(servicio);
+        }else if(servicio.getActivo() == true && servicio != null){
+            servicio.setActivo(false);
+            servicioRepository.save(servicio);
+        }
+        return servicioRepository.save(servicio);
+    }
     
 }

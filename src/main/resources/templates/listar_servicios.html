@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mostrar servicios</title>
+  </head>
+  <body>
+    <h1>Mostrar servicios</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Estado servicio</th>
+          <th>Modificar servicio</th>
+          <th>Cambiar estado servicio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="servicio : ${servicios}">
+          <td th:text="${servicio.nombre}"></td>
+          <td th:text="${servicio.descripcion}"></td>
+          <td th:text="${servicio.precio}"></td>
+          <td th:text="${servicio.activo}"></td>
+          <td>
+            <a
+              th:href="@{/servicios/modificarServicio/{id} (id =${servicio.id})}"
+            >
+              <button type="button">Modificar servicio</button>
+            </a>
+          </td>
+          <td>
+            <a th:href="@{/servicios/cambiarEstado/{id} (id =${servicio.id})}">
+              <button type="button">Modificar estado servicio</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/servicios/crearServicio}">
+      <button type="button">Crear servicio</button>
+    </a>
+    <a th:href="@{/usuario}">
+      <button type="button">Ver usuarios</button>
+    </a>
+    <a th:href="@{/reserva}">
+      <button type="button">Ver reservas</button>
+    </a>
+  </body>
+</html>
