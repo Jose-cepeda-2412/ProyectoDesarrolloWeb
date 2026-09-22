@@ -38,7 +38,7 @@ public class Servicio {
     private List<Reserva> reserva = new ArrayList<>();
 
     @ManyToMany 
-    private List<Espacio> espacio;
+    private List<Espacio> espacio = new ArrayList<>();
 
     public Servicio(String nombre, String descripcion, Double precio, Boolean activo){
         this.nombre = nombre;

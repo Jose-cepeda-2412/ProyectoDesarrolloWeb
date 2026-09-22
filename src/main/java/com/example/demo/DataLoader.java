@@ -291,14 +291,21 @@ public class DataLoader implements CommandLineRunner{
             true
         ));
 
+        
+
         //asignar espacios a los servicios
-    
-        int cantidadServicios = servicioRepository.findAll().size();
-        for (Espacio espacio : espacioRepository.findAll()) {
-            int randomNumServicio = random.nextInt(1, cantidadServicios + 1);
-            Servicio servicio = servicioRepository.findById((long) randomNumServicio).get();
-            espacio.setServicio(servicio);
-            espacioRepository.save(espacio);
+        int cantidadEspacios = espacioRepository.findAll().size();
+        // Cada servicio va a tener 3 espacios
+        int CANTIDAD_ESPACIOS_SERVICIO = 3;
+        for (Servicio servicio : servicioRepository.findAll()) {
+            for (int i = 0; i < CANTIDAD_ESPACIOS_SERVICIO; i++) {
+                int randomNumEspacio = random.nextInt(1, cantidadEspacios + 1);
+                Espacio espacio = espacioRepository
+                        .findById((long) randomNumEspacio)
+                        .get();
+                servicio.getEspacio().add(espacio);
+            }
+            servicioRepository.save(servicio);
         }
     }
     

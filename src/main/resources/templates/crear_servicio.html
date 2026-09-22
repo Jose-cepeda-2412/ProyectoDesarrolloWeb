@@ -9,9 +9,10 @@
     <h1>Crear servicio</h1>
     <form
       th:object="${servicio}"
-      th:action="@{/servicio/guardarServicio}"
+      th:action="@{/servicios/guardarServicio}"
       method="post"
     >
+      <input type="hidden" th:field="*{id}" />
       <label>Nombre del servicio</label>
       <input type="text" th:field="*{nombre}" />
       <br />
@@ -30,6 +31,9 @@
         ></option>
       </select>
       <br />
+      <a th:href="@{servicios/guardarServicio}">
+        <button type="submit">Crear servicio</button>
+      </a>
     </form>
   </body>
 </html>
