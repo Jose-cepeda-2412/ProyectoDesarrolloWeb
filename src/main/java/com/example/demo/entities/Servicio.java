@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -32,8 +34,8 @@ public class Servicio {
     @Column (nullable = false)
     private Boolean activo;
 
-    @ManyToOne 
-    private Reserva reserva;
+    @ManyToMany  (mappedBy = "servicio")
+    private List<Reserva> reserva = new ArrayList<>();
 
     @OneToMany (mappedBy = "servicio")
     private List<Espacio> espacio;

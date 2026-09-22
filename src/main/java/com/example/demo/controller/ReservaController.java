@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.repository.ReservaRepository;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping ("/reserva")
 public class ReservaController {
     
+    private final ReservaRepository reservaRepository;
     @Autowired 
     private ReservaService reservaService;
     @Autowired 
     private UsuarioService usuarioService;
     @Autowired 
     private ServicioService servicioService;
+
+
+    ReservaController(ReservaRepository reservaRepository) {
+        this.reservaRepository = reservaRepository;
+    }
 
 
     @GetMapping()
@@ -56,7 +63,6 @@ public class ReservaController {
         Double totalPagar = 0.0;
         for (Servicio servicio : reserva.getServicio()) {
             totalPagar += servicio.getPrecio();
-            servicio.setReserva(reserva);
         }
         reserva.setTotal(totalPagar);
         reserva.setFechaSolicitud(LocalDate.now());
@@ -65,10 +71,20 @@ public class ReservaController {
     }
 
     @GetMapping("/cambiarEstado/{id}")
-    public String getMethodName(@PathVariable  ("id") Long id) {
+    public String cambiarEstadoReserva(@PathVariable  ("id") Long id) {
         reservaService.cambiarEstado(id);
         return "redirect:/reserva";
     }
+
+    @GetMapping("/modificarReserva/{id}")
+    public String modificarReserva(@PathVariable ("id") Long id, Model model) {
+        Reserva reserva = reservaService.findById(id);
+        model.addAttribute("reserva", reserva);
+        model.addAttribute("servicios", servicioService.findAll());
+        model.addAttribute("usuarios", usuarioService.findAll());
+        return "crear_reserva";
+    }
+    
     
     
     

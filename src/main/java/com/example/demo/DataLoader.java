@@ -218,12 +218,16 @@ public class DataLoader implements CommandLineRunner{
         ));
 
         //asignar servicios a reserva
-        int cantidadReserva = reservaRepository.findAll().size();
-        for (Servicio servicio : servicioRepository.findAll()) {
-            int randomNumServicio = random.nextInt(1, cantidadReserva + 1);
-            Reserva reserva = reservaRepository.findById((long) randomNumServicio).get();
-            servicio.setReserva(reserva);
-            servicioRepository.save(servicio);
+        int cantidadServicio = servicioRepository.findAll().size();
+        //cada reserva va a tener 3 servicios
+        int CANTIDAD_RESERA_SERVICIO = 3;
+        for (Reserva reserva : reservaRepository.findAll()) {
+            for(int i = 0; i < CANTIDAD_RESERA_SERVICIO; i++){
+                int randomNumServicio = random.nextInt(1, cantidadServicio + 1);    
+                Servicio servicio = servicioRepository.findById((long) randomNumServicio).get();
+                reserva.getServicio().add(servicio);
+            }
+            reservaRepository.save(reserva);
         }
 
         //creacion de espacio
