@@ -20,16 +20,13 @@
       <input type="text" th:field="*{descripcion}" />
       <br />
       <label>Precio</label>
-      <input type="number" th:field="*{precio}" />
+      <input type="text" th:field="*{precio}" />
       <br />
       <label>Espacios</label>
-      <select th:field="*{espacios}">
-        <option
-          th:each="espacio : ${espacios}"
-          th:value="${servicio.espacio}"
-          th:text="${espacio.nombre}"
-        ></option>
-      </select>
+      <label th:each="espacio : ${espacios}">
+        <input type="checkbox" th:value="${espacio.id}" th:field="*{espacio}" />
+        <span th:text="${espacio.nombre}"></span>
+      </label>
       <br />
       <a th:href="@{servicios/guardarServicio}">
         <button type="submit">Crear servicio</button>

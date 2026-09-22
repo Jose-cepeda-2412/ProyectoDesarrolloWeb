@@ -9,22 +9,21 @@ import com.example.demo.service.EspacioService;
 import com.example.demo.service.ServicioService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
 @Controller 
 @RequestMapping ("/servicios")
 public class ServicioController {
+
     @Autowired 
     private ServicioService servicioService;
 
     @Autowired 
     private EspacioService espacioService;
+
 
     @GetMapping()
     public String listarServicios(Model model) {
@@ -35,15 +34,16 @@ public class ServicioController {
     @GetMapping("/crearServicio")
     public String crearServicio(Model model) {
         model.addAttribute("servicio", new Servicio() );
-        model.addAttribute("servicio",  espacioService.findAll());
+        model.addAttribute("espacios",  espacioService.findAll());
         return "crear_servicio";
     }
 
     @PostMapping("/guardarServicio")
     public String guardarServicio(@ModelAttribute ("servicio") Servicio servicio) {    
         servicio.setActivo(true);
+        servicio.setPrecio((Double) servicio.getPrecio());
         servicioService.save(servicio);
-        return "redirect/:servicios";
+        return "redirect:/servicios";
     }
     
     
