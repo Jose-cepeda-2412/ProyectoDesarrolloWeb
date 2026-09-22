@@ -2,24 +2,24 @@ package com.example.demo.controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.example.demo.entities.Reserva;
+import com.example.demo.entities.Servicio;
 import com.example.demo.service.ReservaService;
 import com.example.demo.service.ServicioService;
 import com.example.demo.service.UsuarioService;
 
+import jakarta.websocket.server.PathParam;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -53,11 +53,23 @@ public class ReservaController {
     public String guardarReserva(@ModelAttribute ("reserva") Reserva reserva) {
         reserva.setHoraFin(LocalTime.of(19, 35));
         reserva.setEstado(true);
-        reserva.setTotal(1.34);
+        Double totalPagar = 0.0;
+        for (Servicio servicio : reserva.getServicio()) {
+            totalPagar += servicio.getPrecio();
+            servicio.setReserva(reserva);
+        }
+        reserva.setTotal(totalPagar);
         reserva.setFechaSolicitud(LocalDate.now());
         reservaService.save(reserva);
         return "redirect:/reserva";
     }
+
+    @GetMapping("/cambiarEstado/{id}")
+    public String getMethodName(@PathVariable  ("id") Long id) {
+        reservaService.cambiarEstado(id);
+        return "redirect:/reserva";
+    }
+    
     
     
 }
