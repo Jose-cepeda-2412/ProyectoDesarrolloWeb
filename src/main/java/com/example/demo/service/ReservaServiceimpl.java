@@ -31,5 +31,18 @@ public class ReservaServiceimpl implements ReservaService{
     public Reserva save(Reserva reserva) {
         return reservaRepository.save(reserva);
     }
+
+    @Override 
+    public Reserva cambiarEstado(Long id){
+        Reserva reserva = reservaRepository.findById(id).get();
+        if (reserva.getId() != null && reserva.getEstado() == true) {
+            reserva.setEstado(false);
+            reservaRepository.save(reserva);
+        }else if(reserva.getId() != null && reserva.getEstado() == false){
+            reserva.setEstado(true);
+            reservaRepository.save(reserva);
+        }
+        return reservaRepository.save(reserva);
+    }
     
 }

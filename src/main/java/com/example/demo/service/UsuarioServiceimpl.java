@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Usuario;
+import com.example.demo.errors.UsuarioNotFoundException;
 import com.example.demo.repository.UsuarioRepository;
 
 @Service 
@@ -16,7 +17,9 @@ public class UsuarioServiceimpl implements UsuarioService {
 
     @Override
     public Usuario findById(Long id) {
-       return usuarioRepository.findById(id).orElse(null);
+       return usuarioRepository.findById(id).orElseThrow(
+         () -> new UsuarioNotFoundException(id)
+       );
     }
 
 

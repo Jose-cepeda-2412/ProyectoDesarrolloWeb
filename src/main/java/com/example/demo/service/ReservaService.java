@@ -8,4 +8,5 @@ public interface ReservaService {
     public Reserva findById(Long id);
     public Collection<Reserva> findAll();
     public Reserva save(Reserva reserva);    
+    public Reserva cambiarEstado(Long id);
 }

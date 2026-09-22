@@ -1,12 +1,20 @@
 package com.example.demo.entities;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.cglib.core.Local;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -26,15 +34,15 @@ public class Reserva {
     private Long id;
 
     @Column (nullable = false)
-    private String fecha;
+    private LocalDate fecha;
     @Column (nullable = false)
-    private String horaInicio;
+    private LocalTime horaInicio;
     @Column (nullable = false)
-    private String horaFin;
+    private LocalTime horaFin;
     @Column (nullable = false)
     private Boolean estado;
     @Column (nullable = false)
-    private Date fechaSolitiud;
+    private LocalDate fechaSolicitud;
     @Column (nullable = true, length = 200)
     private String observaciones;
     @Column (nullable = true)
@@ -43,18 +51,18 @@ public class Reserva {
     @ManyToOne
     private Usuario usuario; 
 
-    @OneToMany (mappedBy = "reserva")
-    private List<Servicio> servicio;
+    @ManyToMany
+    private List<Servicio> servicio = new ArrayList<>();
 
     @OneToOne (mappedBy = "reserva")
     private Pago pago;
 
-    public Reserva(String fecha, String horaInicio, String horaFin, Boolean estado, Date fechaSolitiud, String observaciones, Double total){
+    public Reserva(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin, Boolean estado, LocalDate fechaSolicitud, String observaciones, Double total){
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.estado = estado;
-        this.fechaSolitiud = fechaSolitiud;
+        this.fechaSolicitud = fechaSolicitud;
         this.observaciones = observaciones;
         this.total = total;
     }
