@@ -8,4 +8,5 @@ public interface ServicioService {
     public Servicio findById(Long id);
     public Collection<Servicio> findAll();
     public Servicio save(Servicio servicio);
+    public Servicio cambiarEstado(Long id);
 }

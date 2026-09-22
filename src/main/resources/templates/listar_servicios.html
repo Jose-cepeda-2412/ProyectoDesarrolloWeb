@@ -26,13 +26,13 @@
           <td th:text="${servicio.activo}"></td>
           <td>
             <a
-              th:href="@{/servicio/modificarServicio/{id}(id =${servicio.id})}"
+              th:href="@{/servicios/modificarServicio/{id} (id =${servicio.id})}"
             >
               <button type="button">Modificar servicio</button>
             </a>
           </td>
           <td>
-            <a th:href="@{/servicio/modificarEstado/{id}(id =${servicio.id})}">
+            <a th:href="@{/servicios/cambiarEstado/{id} (id =${servicio.id})}">
               <button type="button">Modificar estado servicio</button>
             </a>
           </td>
