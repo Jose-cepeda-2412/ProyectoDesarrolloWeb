@@ -12,8 +12,9 @@
       th:action="@{/reserva/guardarReserva}"
       method="post"
     >
+      <input type="hidden" th:field="*{id}" />
       <label>Fecha</label>
-      <input type="date" th:field="*{fecha}" />
+      <input type="date" name="fecha" th:value="${reserva.fecha}" required />
       <br />
       <label>Observaciones</label>
       <input type="text" th:field="*{observaciones}" />
@@ -27,8 +28,13 @@
         ></option>
       </select>
       <br />
-      <label>Hora incio reserva</label>
-      <input type="time" th:field="*{horaInicio}" />
+      <label>Hora inicio reserva</label>
+      <input
+        type="time"
+        name="horaInicio"
+        th:value="${reserva.horaInicio}"
+        required
+      />
       <br />
       <label>Servicios: </label>
       <label th:each="servicio : ${servicios}">

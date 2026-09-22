@@ -12,34 +12,23 @@ import com.example.demo.entities.Servicio;
 import com.example.demo.service.ReservaService;
 import com.example.demo.service.ServicioService;
 import com.example.demo.service.UsuarioService;
-
-import jakarta.websocket.server.PathParam;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 
 @Controller 
 @RequestMapping ("/reserva")
 public class ReservaController {
     
-    private final ReservaRepository reservaRepository;
+    
     @Autowired 
     private ReservaService reservaService;
     @Autowired 
     private UsuarioService usuarioService;
     @Autowired 
     private ServicioService servicioService;
-
-
-    ReservaController(ReservaRepository reservaRepository) {
-        this.reservaRepository = reservaRepository;
-    }
 
 
     @GetMapping()
@@ -58,14 +47,30 @@ public class ReservaController {
 
     @PostMapping("/guardarReserva")
     public String guardarReserva(@ModelAttribute ("reserva") Reserva reserva) {
-        reserva.setHoraFin(LocalTime.of(19, 35));
-        reserva.setEstado(true);
+        
+        if (reserva.getId() != null) {
+            Reserva reservaDatosAnteriores = reservaService.findById(reserva.getId());
+            //si el usuario no cambio la Fecha y la Hora de inicio queda igual a como estaba 
+            if (reserva.getFecha() == null) {
+                reserva.setFecha(reservaDatosAnteriores.getFecha());
+            }
+            if (reserva.getHoraInicio() == null) {
+                reserva.setHoraInicio(reservaDatosAnteriores.getHoraInicio());
+            }
+            reserva.setHoraFin(reservaDatosAnteriores.getHoraFin());
+            reserva.setFechaSolicitud(reservaDatosAnteriores.getFechaSolicitud());
+            reserva.setEstado(reservaDatosAnteriores.getEstado());
+        }else{
+            reserva.setHoraFin(LocalTime.of(19, 35));
+            reserva.setEstado(true);
+            reserva.setFechaSolicitud(LocalDate.now());
+        }
+
         Double totalPagar = 0.0;
         for (Servicio servicio : reserva.getServicio()) {
             totalPagar += servicio.getPrecio();
         }
         reserva.setTotal(totalPagar);
-        reserva.setFechaSolicitud(LocalDate.now());
         reservaService.save(reserva);
         return "redirect:/reserva";
     }
@@ -79,6 +84,9 @@ public class ReservaController {
     @GetMapping("/modificarReserva/{id}")
     public String modificarReserva(@PathVariable ("id") Long id, Model model) {
         Reserva reserva = reservaService.findById(id);
+        System.out.println("ID: " + reserva.getId());
+        System.out.println("FECHA: " + reserva.getFecha());
+        System.out.println("HORA INICIO: " + reserva.getHoraInicio());
         model.addAttribute("reserva", reserva);
         model.addAttribute("servicios", servicioService.findAll());
         model.addAttribute("usuarios", usuarioService.findAll());
