@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear servicio</title>
+  </head>
+  <body>
+    <h1>Crear servicio</h1>
+    <form
+      th:object="${servicio}"
+      th:action="@{/servicio/guardarServicio}"
+      method="post"
+    >
+      <label>Nombre del servicio</label>
+      <input type="text" th:field="*{nombre}" />
+      <br />
+      <label>Descripción</label>
+      <input type="text" th:field="*{descripcion}" />
+      <br />
+      <label>Precio</label>
+      <input type="number" th:field="*{precio}" />
+      <br />
+      <label>Espacios</label>
+      <select th:field="*{espacios}">
+        <option
+          th:each="espacio : ${espacios}"
+          th:value="${servicio.espacio}"
+          th:text="${espacio.nombre}"
+        ></option>
+      </select>
+      <br />
+    </form>
+  </body>
+</html>

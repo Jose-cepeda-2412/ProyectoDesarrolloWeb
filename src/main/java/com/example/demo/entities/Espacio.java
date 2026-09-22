@@ -1,10 +1,14 @@
 package com.example.demo.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,8 +39,8 @@ public class Espacio {
     @Column (nullable = false)
     private Boolean activo;
 
-    @ManyToOne 
-    private Servicio servicio;
+    @ManyToMany (mappedBy = "espacio") 
+    private List<Servicio> servicio = new ArrayList<>();
 
     public Espacio(String nombre, String tipo, String descripcion, Integer capacidad, Double precio, String imagenUrl, Boolean activo){
         this.nombre = nombre;
