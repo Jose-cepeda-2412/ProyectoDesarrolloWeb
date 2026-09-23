@@ -34,14 +34,14 @@
         required
         minlength="10"
         maxlength="10"
-        pattern="[0,9] {10}"
+        pattern="[0-9]{10}"
       />
       <br />
       <label>Contraseña</label>
       <input
         type="password"
         th:field="*{contrasenia}"
-        required
+        th:required="${usuario.id== null}"
         minlength="1"
         maxlength="50"
       />
