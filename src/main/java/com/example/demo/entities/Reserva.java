@@ -37,7 +37,7 @@ public class Reserva {
     private Boolean estado;
     @Column (nullable = false)
     private LocalDate fechaSolicitud;
-    @Column (nullable = true, length = 200)
+    @Column (nullable = false, length = 200)
     private String observaciones;
     @Column (nullable = true)
     private Double total;
