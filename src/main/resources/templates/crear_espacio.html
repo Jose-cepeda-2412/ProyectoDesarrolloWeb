@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear espacio</title>
+  </head>
+  <body>
+    <h1>Crear espacio</h1>
+    <form
+      th:object="${espacio}"
+      th:action="@{/espacios/guardarEspacio}"
+      method="post"
+    >
+      <input type="hidden" th:field="*{id}" />
+      <label>Nombre</label>
+      <input th:type="text" th:field="*{nombre}" />
+      <br />
+      <label>Tipo de espacio</label>
+      <input th:type="text" th:field="*{tipo}" />
+      <br />
+      <label>Descripción</label>
+      <input th:type="text" th:field="*{descripcion}" />
+      <br />
+      <label>Capacidad</label>
+      <input th:type="number" th:field="*{capacidad}" />
+      <br />
+      <label>Imagen (URL)</label>
+      <input th:type="text" th:field="*{imagenUrl}" />
+      <br />
+      <label>Escoger espacio para los servicios</label>
+      <label th:each="servicio : ${servicios}">
+        <input
+          type="checkbox"
+          th:value="${servicio.id}"
+          th:field="*{servicio}"
+        />
+        <span th:text="${servicio.nombre}"></span>
+      </label>
+      <a th:href="@{/espacios/guardarEspacio}">
+        <button type="submit">Guardar espacio</button>
+      </a>
+    </form>
+  </body>
+</html>

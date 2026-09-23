@@ -5,10 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entities.Espacio;
+import com.example.demo.entities.Usuario;
 import com.example.demo.service.EspacioService;
+import com.example.demo.service.ServicioService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller 
@@ -17,6 +24,8 @@ public class EspacioController {
     
     @Autowired 
     private EspacioService espacioService;
+    @Autowired 
+    private ServicioService servicioService;
 
     @GetMapping()
     public String listarEspacios(Model model) {
@@ -24,11 +33,30 @@ public class EspacioController {
         return "listar_espacios";
     }
 
+    @GetMapping("/crearEspacio")
+    public String crearEspacio(Model model) {
+        model.addAttribute("espacio", new Espacio());
+        model.addAttribute("servicios", servicioService.findAll());
+        return "crear_espacio";
+    }
+    
+
     @GetMapping("cambiarEstado/{id}")
-    public String getMethodName(@PathVariable ("id") Long id) {
+    public String cambiarEstado(@PathVariable ("id") Long id) {
         espacioService.cambiarEstado(id);
         return "redirect:/espacios";
     }
+
+    @PostMapping("guardarEspacio")
+    public String guardarEspacio(@ModelAttribute ("espacio") Espacio espacio) {
+        
+        espacio.setActivo(true);
+        espacioService.save(espacio);
+        
+        return "redirect:/espacios";
+    }
+    
+
     
     
 }

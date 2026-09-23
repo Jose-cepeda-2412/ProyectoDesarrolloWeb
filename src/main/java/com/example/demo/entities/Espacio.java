@@ -37,7 +37,7 @@ public class Espacio {
     @Column (nullable = false)
     private Boolean activo;
 
-    @ManyToMany (mappedBy = "espacio") 
+    @ManyToMany 
     private List<Servicio> servicio = new ArrayList<>();
 
     public Espacio(String nombre, String tipo, String descripcion, Integer capacidad, String imagenUrl, Boolean activo){
