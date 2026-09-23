@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +27,7 @@ public class Espacio {
     private String nombre;
     @Column (nullable = false, length = 50)
     private String tipo;
-    @Column (length = 200)
+    @Column (nullable = false, length = 200)
     private String descripcion;
     @Column (nullable = false)
     private Integer capacidad;
