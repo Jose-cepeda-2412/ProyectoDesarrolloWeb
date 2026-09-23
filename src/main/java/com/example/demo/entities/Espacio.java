@@ -32,22 +32,19 @@ public class Espacio {
     private String descripcion;
     @Column (nullable = false)
     private Integer capacidad;
-    @Column (nullable = false)
-    private Double precio;
     @Column (length = 200)
     private String imagenUrl;
     @Column (nullable = false)
     private Boolean activo;
 
-    @ManyToMany (mappedBy = "espacio") 
+    @ManyToMany 
     private List<Servicio> servicio = new ArrayList<>();
 
-    public Espacio(String nombre, String tipo, String descripcion, Integer capacidad, Double precio, String imagenUrl, Boolean activo){
+    public Espacio(String nombre, String tipo, String descripcion, Integer capacidad, String imagenUrl, Boolean activo){
         this.nombre = nombre;
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.capacidad = capacidad;
-        this.precio = precio;
         this.imagenUrl = imagenUrl;
         this.activo = activo;
     }

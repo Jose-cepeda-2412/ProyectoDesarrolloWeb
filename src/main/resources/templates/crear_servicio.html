@@ -22,12 +22,6 @@
       <label>Precio</label>
       <input type="text" th:field="*{precio}" />
       <br />
-      <label>Espacios</label>
-      <label th:each="espacio : ${espacios}">
-        <input type="checkbox" th:value="${espacio.id}" th:field="*{espacio}" />
-        <span th:text="${espacio.nombre}"></span>
-      </label>
-      <br />
       <a th:href="@{servicios/guardarServicio}">
         <button type="submit">Crear servicio</button>
       </a>

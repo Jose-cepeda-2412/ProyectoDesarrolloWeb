@@ -37,7 +37,7 @@ public class Servicio {
     @ManyToMany  (mappedBy = "servicio")
     private List<Reserva> reserva = new ArrayList<>();
 
-    @ManyToMany 
+    @ManyToMany (mappedBy = "servicio")
     private List<Espacio> espacio = new ArrayList<>();
 
     public Servicio(String nombre, String descripcion, Double precio, Boolean activo){

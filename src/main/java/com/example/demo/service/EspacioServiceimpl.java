@@ -28,5 +28,18 @@ public class EspacioServiceimpl implements EspacioService {
     public Espacio save(Espacio espacio) {
         return espacioRepository.save(espacio);
     }
+
+    @Override 
+    public Espacio cambiarEstado(Long id){
+        Espacio espacio = espacioRepository.findById(id).get();
+        if (espacio.getActivo() == true) {
+            espacio.setActivo(false);
+            espacioRepository.save(espacio);
+        }else if (espacio.getActivo() == false) {
+            espacio.setActivo(true);
+            espacioRepository.save(espacio);
+        }
+        return espacioRepository.save(espacio);
+    }
     
 }

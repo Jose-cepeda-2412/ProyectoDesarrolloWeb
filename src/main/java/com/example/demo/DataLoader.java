@@ -236,8 +236,7 @@ public class DataLoader implements CommandLineRunner{
             "Barbería",
             "Estación equipada para cortes de cabello.",
             1,
-            15000.0,
-            "estacion1.jpg",
+            "https://s.dabelleza.com/ogimg/barberias.jpg",
             true
         ));
 
@@ -246,8 +245,7 @@ public class DataLoader implements CommandLineRunner{
             "Barbería",
             "Estación para cortes, degradados y peinados.",
             1,
-            15000.0,
-            "estacion2.jpg",
+            "https://s.dabelleza.com/ogimg/barberias.jpg",
             true
         ));
 
@@ -256,8 +254,7 @@ public class DataLoader implements CommandLineRunner{
             "Barbería",
             "Estación equipada para corte y arreglo de barba.",
             1,
-            18000.0,
-            "estacion3.jpg",
+            "https://s.dabelleza.com/ogimg/barberias.jpg",
             true
         ));
 
@@ -266,8 +263,7 @@ public class DataLoader implements CommandLineRunner{
             "Barba",
             "Espacio especializado para perfilado y arreglo de barba.",
             1,
-            12000.0,
-            "zona_barba.jpg",
+            "https://s.dabelleza.com/ogimg/barberias.jpg",
             true
         ));
 
@@ -276,8 +272,7 @@ public class DataLoader implements CommandLineRunner{
             "Lavado",
             "Espacio equipado con lavacabezas y productos para el cabello.",
             1,
-            10000.0,
-            "zona_lavado.jpg",
+            "https://ubeauty.pro/image/cache/catalog/import_yml/719/975/681/1198050018-mojka-parikmaherskaya-shelliflamingo-550x550w.jpg",
             true
         ));
 
@@ -286,8 +281,7 @@ public class DataLoader implements CommandLineRunner{
             "Barbería",
             "Estación privada para servicios completos de corte y barba.",
             1,
-            25000.0,
-            "estacion_premium.jpg",
+            "https://img.ltwebstatic.com/images3_spmp/2024/12/07/bf/17335514592d75b59cc7b294d5372dc046b0cf2878_thumbnail_900x.jpg",
             true
         ));
 
