@@ -14,19 +14,37 @@
     >
       <input type="hidden" th:field="*{id}" />
       <label>Nombre</label>
-      <input th:type="text" th:field="*{nombre}" />
+      <input
+        th:type="text"
+        th:field="*{nombre}"
+        required
+        minlength="1"
+        maxlength="50"
+      />
       <br />
       <label>Tipo de espacio</label>
-      <input th:type="text" th:field="*{tipo}" />
+      <input
+        th:type="text"
+        th:field="*{tipo}"
+        required
+        minlength="1"
+        maxlength="50"
+      />
       <br />
       <label>Descripción</label>
-      <input th:type="text" th:field="*{descripcion}" />
+      <input
+        th:type="text"
+        th:field="*{descripcion}"
+        required
+        minlength="1"
+        maxlength="200"
+      />
       <br />
       <label>Capacidad</label>
-      <input th:type="number" th:field="*{capacidad}" />
+      <input th:type="number" th:field="*{capacidad}" required min="1" />
       <br />
       <label>Imagen (URL)</label>
-      <input th:type="text" th:field="*{imagenUrl}" />
+      <input th:type="text" th:field="*{imagenUrl}" required />
       <br />
       <label>Escoger espacio para los servicios</label>
       <label th:each="servicio : ${servicios}">

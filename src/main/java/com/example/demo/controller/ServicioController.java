@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -47,10 +46,10 @@ public class ServicioController {
         if (servicio.getId() != null) {
             Servicio datosServicio = servicioService.findById(servicio.getId());
             servicio.setActivo(datosServicio.getActivo());
-            servicio.setPrecio((Double) servicio.getPrecio());
+            servicio.setPrecio(servicio.getPrecio());
         }else{
             servicio.setActivo(true);
-            servicio.setPrecio((Double) servicio.getPrecio());
+            servicio.setPrecio(servicio.getPrecio());
         }
         servicioService.save(servicio);
         return "redirect:/servicios";

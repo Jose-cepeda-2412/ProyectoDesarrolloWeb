@@ -17,10 +17,16 @@
       <input type="date" name="fecha" th:value="${reserva.fecha}" required />
       <br />
       <label>Observaciones</label>
-      <input type="text" th:field="*{observaciones}" />
+      <input
+        type="text"
+        th:field="*{observaciones}"
+        required
+        minlength="1"
+        maxlength="200"
+      />
       <br />
       <label>Usuario a reservar</label>
-      <select th:field="*{usuario}">
+      <select th:field="*{usuario}" required>
         <option
           th:each="usuario : ${usuarios}"
           th:value="${usuario.id}"
