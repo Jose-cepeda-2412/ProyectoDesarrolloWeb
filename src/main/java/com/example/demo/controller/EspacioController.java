@@ -41,7 +41,7 @@ public class EspacioController {
     }
     
 
-    @GetMapping("cambiarEstado/{id}")
+    @GetMapping("/cambiarEstado/{id}")
     public String cambiarEstado(@PathVariable ("id") Long id) {
         espacioService.cambiarEstado(id);
         return "redirect:/espacios";
@@ -55,6 +55,15 @@ public class EspacioController {
         
         return "redirect:/espacios";
     }
+
+    @GetMapping("/modificarEspacio/{id}")
+    public String modificarEspacio(@PathVariable ("id") Long id, Model model) {
+        Espacio espacio = espacioService.findById(id);
+        model.addAttribute("espacio", espacio);
+        model.addAttribute("servicios", servicioService.findAll());
+        return "crear_espacio";
+    }
+    
     
 
     
