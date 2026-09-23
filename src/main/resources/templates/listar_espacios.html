@@ -30,6 +30,16 @@
             <img th:src="${espacio.imagenUrl}" width="150" />
           </td>
           <td th:text="${espacio.activo}"></td>
+          <td>
+            <a th:href="@{espacios/cambiarEstado/{id} (id = ${espacio.id})}">
+              <button type="button">Cambiar estado</button>
+            </a>
+          </td>
+          <td>
+            <a th:href="@{espacios/modificarEspacio/{id} (id = ${espacio.id})}">
+              <button type="button">Modificar servicio</button>
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
