@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listar espacios</title>
+  </head>
+  <body>
+    <h1>Listar espacios</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Descripción</th>
+          <th>Capacidad</th>
+          <th>Imagen</th>
+          <th>Estado del espacio</th>
+          <th>Modificar estado del espacio</th>
+          <th>Modificar espacio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="espacio : ${espacios}">
+          <td th:text="${espacio.nombre}"></td>
+          <td th:text="${espacio.tipo}"></td>
+          <td th:text="${espacio.descripcion}"></td>
+          <td th:text="${espacio.capacidad}"></td>
+          <td>
+            <img th:src="${espacio.imagenUrl}" width="150" />
+          </td>
+          <td th:text="${espacio.activo}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/usuario}">
+      <button type="button">Ver usuarios</button>
+    </a>
+    <a th:href="@{/reserva}">
+      <button type="button">Ver reservas</button>
+    </a>
+    <a th:href="@{/servicios}">
+      <button type="button">Ver servicios</button>
+    </a>
+  </body>
+</html>

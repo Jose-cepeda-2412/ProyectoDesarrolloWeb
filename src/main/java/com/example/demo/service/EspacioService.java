@@ -8,4 +8,5 @@ public interface EspacioService {
     public Espacio findById(Long id);
     public Collection<Espacio> findAll();
     public Espacio save(Espacio espacio);
+    public Espacio cambiarEstado(Long id);
 }
