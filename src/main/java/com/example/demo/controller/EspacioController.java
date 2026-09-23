@@ -47,7 +47,7 @@ public class EspacioController {
         return "redirect:/espacios";
     }
 
-    @PostMapping("guardarEspacio")
+    @PostMapping("/guardarEspacio")
     public String guardarEspacio(@ModelAttribute ("espacio") Espacio espacio) {
         
         espacio.setActivo(true);
