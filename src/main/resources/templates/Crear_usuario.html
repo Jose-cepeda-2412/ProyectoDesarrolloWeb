@@ -8,21 +8,46 @@
   <body>
     <h1>Crear usuario</h1>
     <form th:object="${usuario}" th:action="@{/usuario/guardar}" method="post">
-      <label>Nombre</label>
       <input type="hidden" th:field="*{id}" />
-      <input type="text" th:field="*{nombre}" />
+      <label>Nombre</label>
+      <input
+        type="text"
+        th:field="*{nombre}"
+        required
+        minlength="1"
+        maxlength="100"
+      />
       <br />
       <label>Correo electronico</label>
-      <input type="email" th:field="*{email}" />
+      <input
+        type="email"
+        th:field="*{email}"
+        required
+        minlength="1"
+        maxlength="100"
+      />
       <br />
       <label>Telefono</label>
-      <input type="text" th:field="*{telefono}" />
+      <input
+        type="text"
+        th:field="*{telefono}"
+        required
+        minlength="10"
+        maxlength="10"
+        pattern="[0,9] {10}"
+      />
       <br />
       <label>Contraseña</label>
-      <input type="password" th:field="*{contrasenia}" />
+      <input
+        type="password"
+        th:field="*{contrasenia}"
+        required
+        minlength="1"
+        maxlength="50"
+      />
       <br />
       <label>Rol</label>
-      <select th:field="*{rol}">
+      <select th:field="*{rol}" required>
         <option value="CLIENTE">Cliente</option>
         <option value="ADMINISTRADOR">Administrador</option>
         <option value="BARBERO">Barbero</option>
