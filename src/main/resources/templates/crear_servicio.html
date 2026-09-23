@@ -14,13 +14,25 @@
     >
       <input type="hidden" th:field="*{id}" />
       <label>Nombre del servicio</label>
-      <input type="text" th:field="*{nombre}" />
+      <input
+        type="text"
+        th:field="*{nombre}"
+        required
+        minlength="1"
+        maxlength="50"
+      />
       <br />
       <label>Descripción</label>
-      <input type="text" th:field="*{descripcion}" />
+      <input
+        type="text"
+        th:field="*{descripcion}"
+        required
+        minlength="1"
+        maxlength="200"
+      />
       <br />
       <label>Precio</label>
-      <input type="text" th:field="*{precio}" />
+      <input type="number" th:field="*{precio}" required min="1" />
       <br />
       <a th:href="@{servicios/guardarServicio}">
         <button type="submit">Crear servicio</button>

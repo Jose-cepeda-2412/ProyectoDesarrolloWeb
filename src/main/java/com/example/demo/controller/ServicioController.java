@@ -46,10 +46,10 @@ public class ServicioController {
         if (servicio.getId() != null) {
             Servicio datosServicio = servicioService.findById(servicio.getId());
             servicio.setActivo(datosServicio.getActivo());
-            servicio.setPrecio((Double) servicio.getPrecio());
+            servicio.setPrecio(servicio.getPrecio());
         }else{
             servicio.setActivo(true);
-            servicio.setPrecio((Double) servicio.getPrecio());
+            servicio.setPrecio(servicio.getPrecio());
         }
         servicioService.save(servicio);
         return "redirect:/servicios";
