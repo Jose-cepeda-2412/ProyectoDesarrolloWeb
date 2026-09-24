@@ -35,3 +35,8 @@ estilos para las tablas
   background-color: #f0edf4;
   border-radius: 3px;
 }
+
+p {
+  margin: 6px;
+  padding: 6px;
+}
