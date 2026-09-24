@@ -62,19 +62,20 @@ public class ReservaServiceimpl implements ReservaService{
             if (reserva.getHoraInicio() == null) {
                 reserva.setHoraInicio(reservaDatosAnteriores.getHoraInicio());
             }
-            reserva.setHoraFin(reservaDatosAnteriores.getHoraFin());
             reserva.setFechaSolicitud(reservaDatosAnteriores.getFechaSolicitud());
             reserva.setEstado(reservaDatosAnteriores.getEstado());
         }else{
-            reserva.setHoraFin(LocalTime.of(19, 35));
             reserva.setEstado(true);
             reserva.setFechaSolicitud(LocalDate.now());
         }
 
         Double totalPagar = 0.0;
+        int duracionTotal = 0;
         for (Servicio servicio : reserva.getServicio()) {
             totalPagar += servicio.getPrecio();
+            duracionTotal += servicio.getDuracion();
         }
+        reserva.setHoraFin(reserva.getHoraInicio().plusMinutes(duracionTotal));
         reserva.setTotal(totalPagar);
         reservaRepository.save(reserva);
     }

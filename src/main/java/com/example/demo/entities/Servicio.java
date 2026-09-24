@@ -32,16 +32,20 @@ public class Servicio {
     @Column (nullable = false)
     private Boolean activo;
 
+    @Column (nullable = false)
+    private Integer duracion;
+
     @ManyToMany  (mappedBy = "servicio")
     private List<Reserva> reserva = new ArrayList<>();
 
     @ManyToMany (mappedBy = "servicio")
     private List<Espacio> espacio = new ArrayList<>();
 
-    public Servicio(String nombre, String descripcion, Double precio, Boolean activo){
+    public Servicio(String nombre, String descripcion, Double precio, Boolean activo, Integer duracion){
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.activo = activo;
+        this.duracion = duracion;
     }
 }

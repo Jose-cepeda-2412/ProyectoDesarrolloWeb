@@ -178,42 +178,48 @@ public class DataLoader implements CommandLineRunner{
             "Corte clásico",
             "Corte de cabello tradicional con acabado y peinado.",
             30000.0,
-            true
+            true,
+            30
         ));
 
         servicioRepository.save(new Servicio(
             "Corte degradado",
             "Corte con degradado en laterales y acabado personalizado.",
             35000.0,
-            true
+            true,
+            45
         ));
 
         servicioRepository.save(new Servicio(
             "Arreglo de barba",
             "Perfilado, recorte y arreglo completo de barba.",
             20000.0,
-            true
+            true,
+            30
         ));
 
         servicioRepository.save(new Servicio(
             "Corte y barba",
             "Servicio completo de corte de cabello y arreglo de barba.",
             48000.0,
-            true
+            true,
+            60
         ));
 
         servicioRepository.save(new Servicio(
             "Lavado de cabello",
             "Lavado de cabello con productos profesionales.",
             15000.0,
-            true
+            true,
+            20
         ));
 
         servicioRepository.save(new Servicio(
             "Cejas",
             "Perfilado y arreglo de cejas.",
             12000.0,
-            true
+            true,
+            15
         ));
 
         //asignar servicios a reserva
