@@ -12,49 +12,53 @@
   </head>
   <body>
     <h1 class="text-center">Listar espacios</h1>
-    <div class="table-responsive">
-      <table class="table table-hover" border="1">
-        <thead>
-          <tr class="text-center">
-            <th scope="col">Nombre</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Capacidad</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Estado del espacio</th>
-            <th scope="col">Modificar estado del espacio</th>
-            <th scope="col">Modificar espacio</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="espacio : ${espacios}">
-            <td th:text="${espacio.nombre}"></td>
-            <td th:text="${espacio.tipo}"></td>
-            <td th:text="${espacio.descripcion}"></td>
-            <td th:text="${espacio.capacidad}"></td>
-            <td>
-              <img th:src="${espacio.imagenUrl}" width="150" />
-            </td>
-            <td th:text="${espacio.activo}"></td>
-            <td>
-              <a th:href="@{espacios/cambiarEstado/{id} (id = ${espacio.id})}">
-                <button class="btn btn-primary" type="button">
-                  Cambiar estado
-                </button>
-              </a>
-            </td>
-            <td>
-              <a
-                th:href="@{espacios/modificarEspacio/{id} (id = ${espacio.id})}"
-              >
-                <button class="btn btn-primary" type="button">
-                  Modificar servicio
-                </button>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-hover" border="1">
+          <thead>
+            <tr class="text-center">
+              <th scope="col">Nombre</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Capacidad</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Estado del espacio</th>
+              <th scope="col">Modificar estado del espacio</th>
+              <th scope="col">Modificar espacio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="espacio : ${espacios}">
+              <td th:text="${espacio.nombre}"></td>
+              <td th:text="${espacio.tipo}"></td>
+              <td th:text="${espacio.descripcion}"></td>
+              <td th:text="${espacio.capacidad}"></td>
+              <td>
+                <img th:src="${espacio.imagenUrl}" width="150" />
+              </td>
+              <td th:text="${espacio.activo}"></td>
+              <td>
+                <a
+                  th:href="@{espacios/cambiarEstado/{id} (id = ${espacio.id})}"
+                >
+                  <button class="btn btn-primary" type="button">
+                    Cambiar estado
+                  </button>
+                </a>
+              </td>
+              <td>
+                <a
+                  th:href="@{espacios/modificarEspacio/{id} (id = ${espacio.id})}"
+                >
+                  <button class="btn btn-primary" type="button">
+                    Modificar servicio
+                  </button>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="text-center">
