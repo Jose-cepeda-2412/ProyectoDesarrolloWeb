@@ -9,4 +9,6 @@ public interface ReservaService {
     public Collection<Reserva> findAll();
     public Reserva save(Reserva reserva);    
     public Reserva cambiarEstado(Long id);
+    public Reserva crearReserva();
+    public void guardarReserva(Reserva reserva);
 }

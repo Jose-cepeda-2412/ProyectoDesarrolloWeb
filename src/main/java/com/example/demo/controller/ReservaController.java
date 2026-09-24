@@ -1,13 +1,10 @@
 package com.example.demo.controller;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.entities.Reserva;
-import com.example.demo.entities.Servicio;
 import com.example.demo.service.ReservaService;
 import com.example.demo.service.ServicioService;
 import com.example.demo.service.UsuarioService;
@@ -38,7 +35,7 @@ public class ReservaController {
 
     @GetMapping("/crearReserva")
     public String crearReserva(Model model) {
-        model.addAttribute("reserva", new Reserva());
+        model.addAttribute("reserva", reservaService.crearReserva());
         model.addAttribute("usuarios", usuarioService.findAll());
         model.addAttribute("servicios", servicioService.findAll());
         return "crear_reserva";
@@ -46,31 +43,7 @@ public class ReservaController {
 
     @PostMapping("/guardarReserva")
     public String guardarReserva(@ModelAttribute ("reserva") Reserva reserva) {
-        
-        if (reserva.getId() != null) {
-            Reserva reservaDatosAnteriores = reservaService.findById(reserva.getId());
-            //si el usuario no cambio la Fecha y la Hora de inicio queda igual a como estaba 
-            if (reserva.getFecha() == null) {
-                reserva.setFecha(reservaDatosAnteriores.getFecha());
-            }
-            if (reserva.getHoraInicio() == null) {
-                reserva.setHoraInicio(reservaDatosAnteriores.getHoraInicio());
-            }
-            reserva.setHoraFin(reservaDatosAnteriores.getHoraFin());
-            reserva.setFechaSolicitud(reservaDatosAnteriores.getFechaSolicitud());
-            reserva.setEstado(reservaDatosAnteriores.getEstado());
-        }else{
-            reserva.setHoraFin(LocalTime.of(19, 35));
-            reserva.setEstado(true);
-            reserva.setFechaSolicitud(LocalDate.now());
-        }
-
-        Double totalPagar = 0.0;
-        for (Servicio servicio : reserva.getServicio()) {
-            totalPagar += servicio.getPrecio();
-        }
-        reserva.setTotal(totalPagar);
-        reservaService.save(reserva);
+        reservaService.guardarReserva(reserva);
         return "redirect:/reserva";
     }
 
@@ -82,8 +55,7 @@ public class ReservaController {
 
     @GetMapping("/modificarReserva/{id}")
     public String modificarReserva(@PathVariable ("id") Long id, Model model) {
-        Reserva reserva = reservaService.findById(id);
-        model.addAttribute("reserva", reserva);
+        model.addAttribute("reserva", reservaService.findById(id));
         model.addAttribute("servicios", servicioService.findAll());
         model.addAttribute("usuarios", usuarioService.findAll());
         return "crear_reserva";
