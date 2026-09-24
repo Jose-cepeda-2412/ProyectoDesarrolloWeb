@@ -31,6 +31,8 @@
               <th scope="col">Servicios de la reseva</th>
               <th scope="col">Modificar reserva</th>
               <th scope="col">Cambiar estado reserva</th>
+              <!--Detalle de la reserva-->
+              <th scope="col">Detalle de la reserva</th>
             </tr>
           </thead>
           <tbody>
@@ -64,6 +66,16 @@
                 <a th:href="@{/reserva/cambiarEstado/{id}(id =${reserva.id})}">
                   <button class="btn btn-primary" type="button">
                     Modificar Estado reserva
+                  </button>
+                </a>
+              </td>
+
+              <td>
+                <a
+                  th:href="@{/reserva/consultaReserva/{id}(id =${reserva.id})}"
+                >
+                  <button class="btn btn-primary" type="button">
+                    Detalle de la reserva
                   </button>
                 </a>
               </td>
