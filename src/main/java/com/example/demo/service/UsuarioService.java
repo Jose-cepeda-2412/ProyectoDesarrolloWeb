@@ -9,4 +9,6 @@ public interface UsuarioService {
     public Collection<Usuario> findAll();
     public Usuario save (Usuario usuario);
     public void cambiarEstado(Long id);
+    public Usuario crearUsuario();
+    public void guardarUsuario(Usuario usuario);
 }
