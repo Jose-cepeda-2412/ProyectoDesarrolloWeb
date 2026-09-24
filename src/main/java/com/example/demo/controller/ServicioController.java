@@ -36,29 +36,20 @@ public class ServicioController {
 
     @GetMapping("/crearServicio")
     public String crearServicio(Model model) {
-        model.addAttribute("servicio", new Servicio() );
+        model.addAttribute("servicio", servicioService.crearServicio());
         model.addAttribute("espacios",  espacioService.findAll());
         return "crear_servicio";
     }
 
     @PostMapping("/guardarServicio")
     public String guardarServicio(@ModelAttribute ("servicio") Servicio servicio) {    
-        if (servicio.getId() != null) {
-            Servicio datosServicio = servicioService.findById(servicio.getId());
-            servicio.setActivo(datosServicio.getActivo());
-            servicio.setPrecio(servicio.getPrecio());
-        }else{
-            servicio.setActivo(true);
-            servicio.setPrecio(servicio.getPrecio());
-        }
-        servicioService.save(servicio);
+        servicioService.guardarServicio(servicio);
         return "redirect:/servicios";
     }
 
     @GetMapping("/modificarServicio/{id}")
     public String modificarServicio(@PathVariable ("id") Long id, Model model) {
-        Servicio servicio = servicioService.findById(id);
-        model.addAttribute("servicio", servicio);
+        model.addAttribute("servicio", servicioService.findById(id));
         model.addAttribute("espacios", espacioService.findAll());
         return "crear_servicio";
     }
