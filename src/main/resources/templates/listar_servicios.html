@@ -21,6 +21,7 @@
               <th scope="col">Descripción</th>
               <th scope="col">Precio</th>
               <th scope="col">Estado servicio</th>
+              <th scope="col">Duración del servicio</th>
               <th scope="col">Modificar servicio</th>
               <th scope="col">Cambiar estado servicio</th>
             </tr>
@@ -31,6 +32,7 @@
               <td th:text="${servicio.descripcion}"></td>
               <td th:text="${servicio.precio}"></td>
               <td th:text="${servicio.activo}"></td>
+              <td th:text="${servicio.duracion}"></td>
               <td>
                 <a
                   th:href="@{/servicios/modificarServicio/{id} (id =${servicio.id})}"
