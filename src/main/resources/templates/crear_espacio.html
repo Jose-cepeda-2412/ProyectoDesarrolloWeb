@@ -3,62 +3,117 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
     <title>Crear espacio</title>
   </head>
   <body>
-    <h1>Crear espacio</h1>
-    <form
-      th:object="${espacio}"
-      th:action="@{/espacios/guardarEspacio}"
-      method="post"
-    >
-      <input type="hidden" th:field="*{id}" />
-      <label>Nombre</label>
-      <input
-        th:type="text"
-        th:field="*{nombre}"
-        required
-        minlength="1"
-        maxlength="50"
-      />
-      <br />
-      <label>Tipo de espacio</label>
-      <input
-        th:type="text"
-        th:field="*{tipo}"
-        required
-        minlength="1"
-        maxlength="50"
-      />
-      <br />
-      <label>Descripción</label>
-      <input
-        th:type="text"
-        th:field="*{descripcion}"
-        required
-        minlength="1"
-        maxlength="200"
-      />
-      <br />
-      <label>Capacidad</label>
-      <input th:type="number" th:field="*{capacidad}" required min="1" />
-      <br />
-      <label>Imagen (URL)</label>
-      <input th:type="text" th:field="*{imagenUrl}" required />
-      <br />
-      <label>Escoger espacio para los servicios</label>
-      <label th:each="servicio : ${servicios}">
-        <input
-          type="checkbox"
-          th:value="${servicio.id}"
-          th:field="*{servicio}"
-        />
-        <span th:text="${servicio.nombre}"></span>
-      </label>
-      <br />
-      <a th:href="@{/espacios/guardarEspacio}">
-        <button type="submit">Guardar espacio</button>
-      </a>
-    </form>
+    <h1 class="text-center">Crear espacio</h1>
+
+    <div class="container">
+      <form
+        th:object="${espacio}"
+        th:action="@{/espacios/guardarEspacio}"
+        method="post"
+      >
+        <input type="hidden" th:field="*{id}" />
+        <div class="mb-3">
+          <label for="nombreEspacio" class="form-label">Nombre</label>
+          <input
+            th:type="text"
+            th:field="*{nombre}"
+            required
+            minlength="1"
+            maxlength="50"
+            class="form-control"
+            id="nombreEspacio"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="tipoEspacio" class="form-label">Tipo de espacio</label>
+          <input
+            th:type="text"
+            th:field="*{tipo}"
+            required
+            minlength="1"
+            maxlength="50"
+            class="form-control"
+            id="tipoEspacio"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="descripcionEspacio" class="form-label">Descripción</label>
+          <input
+            th:type="text"
+            th:field="*{descripcion}"
+            required
+            minlength="1"
+            maxlength="200"
+            class="form-control"
+            id="descripcionEspacio"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="capacidadEspacio" class="form-label">Capacidad</label>
+          <input
+            th:type="number"
+            th:field="*{capacidad}"
+            required
+            min="1"
+            class="form-control"
+            id="capacidadEspacio"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="imagenEspacio" class="form-label">Imagen (URL)</label>
+          <input
+            th:type="text"
+            th:field="*{imagenUrl}"
+            required
+            class="form-control"
+            id="imagenEspacio"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="espacioServico" class="form-label"
+            >Escoger espacio para los servicios</label
+          >
+          <label th:each="servicio : ${servicios}">
+            <input
+              type="checkbox"
+              th:value="${servicio.id}"
+              th:field="*{servicio}"
+              class="form-check-input"
+              id="espacioServico"
+            />
+            <span th:text="${servicio.nombre}"></span>
+          </label>
+          <br />
+        </div>
+
+        <div class="text-center">
+          <a th:href="@{/espacios/guardarEspacio}">
+            <button class="btn btn-primary" type="submit">
+              Guardar espacio
+            </button>
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -3,58 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
     <title>Crear reserva</title>
   </head>
   <body>
-    <h1>Crear reserva</h1>
-    <form
-      th:object="${reserva}"
-      th:action="@{/reserva/guardarReserva}"
-      method="post"
-    >
-      <input type="hidden" th:field="*{id}" />
-      <label>Fecha</label>
-      <input type="date" name="fecha" th:value="${reserva.fecha}" required />
-      <br />
-      <label>Observaciones</label>
-      <input
-        type="text"
-        th:field="*{observaciones}"
-        required
-        minlength="1"
-        maxlength="200"
-      />
-      <br />
-      <label>Usuario a reservar</label>
-      <select th:field="*{usuario}" required>
-        <option
-          th:each="usuario : ${usuarios}"
-          th:value="${usuario.id}"
-          th:text="${usuario.nombre}"
-        ></option>
-      </select>
-      <br />
-      <label>Hora inicio reserva</label>
-      <input
-        type="time"
-        name="horaInicio"
-        th:value="${reserva.horaInicio}"
-        required
-      />
-      <br />
-      <label>Servicios: </label>
-      <label th:each="servicio : ${servicios}">
-        <input
-          type="checkbox"
-          th:value="${servicio.id}"
-          th:field="*{servicio}"
-        />
-        <span th:text="${servicio.nombre}"></span>
-      </label>
-      <br />
-      <a th:href="@{reserva/guardarReserva}">
-        <button type="submit">Crear reserva</button>
-      </a>
-    </form>
+    <h1 class="text-center">Crear reserva</h1>
+    <div class="container">
+      <form
+        th:object="${reserva}"
+        th:action="@{/reserva/guardarReserva}"
+        method="post"
+      >
+        <input type="hidden" th:field="*{id}" />
+        <div class="mb-3">
+          <label for="fechaReserva" class="form-label">Fecha</label>
+          <input
+            type="date"
+            name="fecha"
+            th:value="${reserva.fecha}"
+            required
+            class="form-control"
+            id="fechaReserva"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="observacionesReserva" class="form-label"
+            >Observaciones</label
+          >
+          <input
+            type="text"
+            th:field="*{observaciones}"
+            required
+            minlength="1"
+            maxlength="200"
+            class="form-control"
+            id="observacionesReserva"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="usuarioReserva" class="form-label"
+            >Usuario a reservar</label
+          >
+          <select
+            id="usuarioReserva"
+            class="form-select"
+            th:field="*{usuario}"
+            required
+          >
+            <option
+              th:each="usuario : ${usuarios}"
+              th:value="${usuario.id}"
+              th:text="${usuario.nombre}"
+            ></option>
+          </select>
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="horaInicioR" class="form-label"
+            >Hora inicio reserva</label
+          >
+          <input
+            type="time"
+            name="horaInicio"
+            th:value="${reserva.horaInicio}"
+            required
+            class="form-control"
+            id="horaInicioR"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Servicios:</label>
+
+          <div class="form-check" th:each="servicio : ${servicios}">
+            <input
+              type="checkbox"
+              th:value="${servicio.id}"
+              th:field="*{servicio}"
+              class="form-check-input"
+            />
+
+            <label class="form-check-label" th:text="${servicio.nombre}">
+            </label>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a th:href="@{reserva/guardarReserva}">
+            <button class="btn btn-primary" type="submit">Crear reserva</button>
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
