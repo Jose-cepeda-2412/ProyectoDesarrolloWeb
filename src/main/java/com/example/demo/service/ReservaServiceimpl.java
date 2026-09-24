@@ -79,4 +79,9 @@ public class ReservaServiceimpl implements ReservaService{
         reserva.setTotal(totalPagar);
         reservaRepository.save(reserva);
     }
+
+    @Override 
+    public Collection<Reserva> buscarReservasActivas(){
+        return reservaRepository.buscarReservasActivas();
+    }
 }

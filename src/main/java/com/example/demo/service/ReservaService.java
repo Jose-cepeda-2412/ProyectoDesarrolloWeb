@@ -11,4 +11,5 @@ public interface ReservaService {
     public Reserva cambiarEstado(Long id);
     public Reserva crearReserva();
     public void guardarReserva(Reserva reserva);
+    public Collection<Reserva> buscarReservasActivas();
 }
