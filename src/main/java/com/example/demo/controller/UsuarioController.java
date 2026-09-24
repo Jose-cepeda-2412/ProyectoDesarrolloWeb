@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,43 +27,25 @@ public class UsuarioController {
 
     @GetMapping("/crearUsuario")
     public String crearUsuario(Model model) {
-        model.addAttribute("usuario", new Usuario());
+        model.addAttribute("usuario", usuarioService.crearUsuario());
         return "Crear_usuario";
     }
 
     @PostMapping("/guardar")
     public String postMethodName(@ModelAttribute("usuario")  Usuario usuario) {    
-        
-        if (usuario.getId() != null) {
-            Usuario usuario2 = usuarioService.findById(usuario.getId());
-            //si el usuario no cambia la contraseña se guarda la anterior
-            if (usuario.getContrasenia() == null || usuario.getContrasenia().isBlank()) {
-                usuario.setContrasenia(usuario2.getContrasenia());
-            }
-            usuario.setActivo(usuario2.getActivo());
-            usuario.setFechaRegistro(usuario2.getFechaRegistro());
-        }else{
-            usuario.setActivo(true);
-            usuario.setFechaRegistro(new Date());
-        }
-        
-        usuarioService.save(usuario);
+        usuarioService.guardarUsuario(usuario);
         return "redirect:/usuario";
     }
 
     @GetMapping("/actualizar/{id}")
     public String actualizarUsuario(@PathVariable ("id") Long id, Model model) {
-        Usuario usuario = usuarioService.findById(id);
-        model.addAttribute("usuario", usuario);
+        model.addAttribute("usuario", usuarioService.findById(id));
         return "Crear_usuario";
     }
     
     @GetMapping("/cambiarEstado/{id}")
     public String cambiarEstadoUsuario(@PathVariable ("id") Long id) {
-        Usuario usuario = usuarioService.findById(id);
-        if (usuario.getId() != null) {
-            usuarioService.cambiarEstado(id);           
-        }
+        usuarioService.cambiarEstado(id);
         return "redirect:/usuario";
     }
     

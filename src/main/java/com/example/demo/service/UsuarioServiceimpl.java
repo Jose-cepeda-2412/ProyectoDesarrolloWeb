@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,14 +37,34 @@ public class UsuarioServiceimpl implements UsuarioService {
     @Override
     public void cambiarEstado(Long id) {
         Usuario usuario = findById(id);
-        if(usuario.getActivo() == true && usuario != null){
+        if(usuario.getActivo() == true ){
             usuario.setActivo(false);
-            usuarioRepository.save(usuario);
-        }else if (usuario.getActivo() == false && usuario != null) {
+        }else if (usuario.getActivo() == false) {
             usuario.setActivo(true);
-            usuarioRepository.save(usuario);
         }
+        usuarioRepository.save(usuario);
     }
     
-    
+    @Override 
+    public Usuario crearUsuario(){
+        return new Usuario();
+    }
+
+    @Override 
+    public void guardarUsuario(Usuario usuario){
+        if (usuario.getId() != null) {
+            Usuario usuario2 = findById(usuario.getId());
+            //si el usuario no cambia la contraseña se guarda la anterior
+            if (usuario.getContrasenia() == null || usuario.getContrasenia().isBlank()) {
+                usuario.setContrasenia(usuario2.getContrasenia());
+            }
+            usuario.setActivo(usuario2.getActivo());
+            usuario.setFechaRegistro(usuario2.getFechaRegistro());
+        }else{
+            usuario.setActivo(true);
+            usuario.setFechaRegistro(new Date());
+        }
+        
+        usuarioRepository.save(usuario);
+    }
 }

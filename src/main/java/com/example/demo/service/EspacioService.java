@@ -9,4 +9,6 @@ public interface EspacioService {
     public Collection<Espacio> findAll();
     public Espacio save(Espacio espacio);
     public Espacio cambiarEstado(Long id);
+    public void guardarEspacio(Espacio espacio);
+    public Espacio crearEspacio();
 }

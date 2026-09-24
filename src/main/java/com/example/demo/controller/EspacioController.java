@@ -31,7 +31,7 @@ public class EspacioController {
 
     @GetMapping("/crearEspacio")
     public String crearEspacio(Model model) {
-        model.addAttribute("espacio", new Espacio());
+        model.addAttribute("espacio", espacioService.crearEspacio());
         model.addAttribute("servicios", servicioService.findAll());
         return "crear_espacio";
     }
@@ -45,17 +45,13 @@ public class EspacioController {
 
     @PostMapping("/guardarEspacio")
     public String guardarEspacio(@ModelAttribute ("espacio") Espacio espacio) {
-        
-        espacio.setActivo(true);
-        espacioService.save(espacio);
-        
+        espacioService.guardarEspacio(espacio);
         return "redirect:/espacios";
     }
 
     @GetMapping("/modificarEspacio/{id}")
     public String modificarEspacio(@PathVariable ("id") Long id, Model model) {
-        Espacio espacio = espacioService.findById(id);
-        model.addAttribute("espacio", espacio);
+        model.addAttribute("espacio", espacioService.findById(id));
         model.addAttribute("servicios", servicioService.findAll());
         return "crear_espacio";
     }

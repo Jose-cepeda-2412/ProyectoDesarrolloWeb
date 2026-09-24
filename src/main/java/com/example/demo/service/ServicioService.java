@@ -9,4 +9,6 @@ public interface ServicioService {
     public Collection<Servicio> findAll();
     public Servicio save(Servicio servicio);
     public Servicio cambiarEstado(Long id);
+    public Servicio crearServicio();
+    public void guardarServicio(Servicio servicio);
 }
