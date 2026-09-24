@@ -3,57 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
     <title>Listar espacios</title>
   </head>
   <body>
-    <h1>Listar espacios</h1>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Tipo</th>
-          <th>Descripción</th>
-          <th>Capacidad</th>
-          <th>Imagen</th>
-          <th>Estado del espacio</th>
-          <th>Modificar estado del espacio</th>
-          <th>Modificar espacio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="espacio : ${espacios}">
-          <td th:text="${espacio.nombre}"></td>
-          <td th:text="${espacio.tipo}"></td>
-          <td th:text="${espacio.descripcion}"></td>
-          <td th:text="${espacio.capacidad}"></td>
-          <td>
-            <img th:src="${espacio.imagenUrl}" width="150" />
-          </td>
-          <td th:text="${espacio.activo}"></td>
-          <td>
-            <a th:href="@{espacios/cambiarEstado/{id} (id = ${espacio.id})}">
-              <button type="button">Cambiar estado</button>
-            </a>
-          </td>
-          <td>
-            <a th:href="@{espacios/modificarEspacio/{id} (id = ${espacio.id})}">
-              <button type="button">Modificar servicio</button>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <a th:href="@{/espacios/crearEspacio}">
-      <button type="button">Crear espacio</button>
-    </a>
-    <a th:href="@{/usuario}">
-      <button type="button">Ver usuarios</button>
-    </a>
-    <a th:href="@{/reserva}">
-      <button type="button">Ver reservas</button>
-    </a>
-    <a th:href="@{/servicios}">
-      <button type="button">Ver servicios</button>
-    </a>
+    <h1 class="text-center">Listar espacios</h1>
+    <div class="table-responsive">
+      <table class="table table-hover" border="1">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Capacidad</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Estado del espacio</th>
+            <th scope="col">Modificar estado del espacio</th>
+            <th scope="col">Modificar espacio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="espacio : ${espacios}">
+            <td th:text="${espacio.nombre}"></td>
+            <td th:text="${espacio.tipo}"></td>
+            <td th:text="${espacio.descripcion}"></td>
+            <td th:text="${espacio.capacidad}"></td>
+            <td>
+              <img th:src="${espacio.imagenUrl}" width="150" />
+            </td>
+            <td th:text="${espacio.activo}"></td>
+            <td>
+              <a th:href="@{espacios/cambiarEstado/{id} (id = ${espacio.id})}">
+                <button class="btn btn-primary" type="button">
+                  Cambiar estado
+                </button>
+              </a>
+            </td>
+            <td>
+              <a
+                th:href="@{espacios/modificarEspacio/{id} (id = ${espacio.id})}"
+              >
+                <button class="btn btn-primary" type="button">
+                  Modificar servicio
+                </button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-center">
+      <a th:href="@{/espacios/crearEspacio}">
+        <button class="btn btn-primary" type="button">Crear espacio</button>
+      </a>
+      <a th:href="@{/usuario}">
+        <button class="btn btn-primary" type="button">Ver usuarios</button>
+      </a>
+      <a th:href="@{/reserva}">
+        <button class="btn btn-primary" type="button">Ver reservas</button>
+      </a>
+      <a th:href="@{/servicios}">
+        <button class="btn btn-primary" type="button">Ver servicios</button>
+      </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
