@@ -68,6 +68,20 @@
           />
           <br />
         </div>
+
+        <div class="mb-3">
+          <label for="duracionServicio" class="form-label"
+            >Duración (minutos)</label
+          >
+          <input
+            type="number"
+            min="1"
+            required
+            id="duracionServicio"
+            class="form-control"
+          />
+        </div>
+
         <div class="text-center">
           <a th:href="@{servicios/guardarServicio}">
             <button type="submit" class="btn btn-primary">
