@@ -3,77 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
     <title>Listar reservas</title>
   </head>
   <body>
-    <h1>Listar reservas</h1>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Fecha reserva</th>
-          <th>Hora inicio</th>
-          <th>Hora fin</th>
-          <th>Estado reserva</th>
-          <th>Fecha solicitud</th>
-          <th>Observaciones</th>
-          <th>Precio total</th>
-          <!--Datos cliente-->
-          <th>Nombre persona reserva</th>
-          <th>Correo persona reserva</th>
-          <!--servicio de la reserva-->
-          <th>Servicios de la reseva</th>
-          <th>Modificar reserva</th>
-          <th>Cambiar estado reserva</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="reserva: ${reservas}">
-          <td th:text="${reserva.fecha}"></td>
-          <td th:text="${reserva.horaInicio}"></td>
-          <td th:text="${reserva.horaFin}"></td>
-          <td th:text="${reserva.estado}"></td>
-          <td th:text="${reserva.fechaSolicitud}"></td>
-          <td th:text="${reserva.observaciones}"></td>
-          <td th:text="${reserva.total}"></td>
-          <td th:text="${reserva.usuario.nombre}"></td>
-          <td th:text="${reserva.usuario.email}"></td>
-          <!--RECORRER LOS SERVICIOS DE LA RESERVA-->
-          <td>
-            <span th:each="servicio: ${reserva.servicio}">
-              <span th:text="${servicio.nombre}"></span>
-              <br />
-            </span>
-          </td>
-          <td>
-            <a th:href="@{/reserva/modificarReserva/{id}(id =${reserva.id})}">
-              <button type="button">Modificar reserva</button>
-            </a>
-          </td>
-          <td>
-            <a th:href="@{/reserva/cambiarEstado/{id}(id =${reserva.id})}">
-              <button type="button">Modificar Estado reserva</button>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <a th:href="@{/reserva/crearReserva}">
-      <button type="button">Crear reserva</button>
-    </a>
-    <a th:href="@{/usuario}">
-      <button type="button">Ver usuarios</button>
-    </a>
-    <a th:href="@{/servicios}">
-      <button type="button">Ver servicios</button>
-    </a>
-    <a th:href="@{/espacios}">
-      <button type="button">Ver espacios</button>
-    </a>
-    <a th:href="@{/reserva/reservasActivas}">
-      <button type="button">Ver reservas activas</button>
-    </a>
-    <a th:href="@{/reserva}">
-      <button type="button">Ver reservas activas e incativas</button>
-    </a>
+    <h1 class="text-center">Listar reservas</h1>
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr class="text-center">
+              <th scope="col">Fecha reserva</th>
+              <th scope="col">Hora inicio</th>
+              <th scope="col">Hora fin</th>
+              <th scope="col">Estado reserva</th>
+              <th scope="col">Fecha solicitud</th>
+              <th scope="col">Observaciones</th>
+              <th scope="col">Precio total</th>
+              <!--Datos cliente-->
+              <th scope="col">Nombre persona reserva</th>
+              <th scope="col">Correo persona reserva</th>
+              <!--servicio de la reserva-->
+              <th scope="col">Servicios de la reseva</th>
+              <th scope="col">Modificar reserva</th>
+              <th scope="col">Cambiar estado reserva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="reserva: ${reservas}">
+              <td th:text="${reserva.fecha}"></td>
+              <td th:text="${reserva.horaInicio}"></td>
+              <td th:text="${reserva.horaFin}"></td>
+              <td th:text="${reserva.estado}"></td>
+              <td th:text="${reserva.fechaSolicitud}"></td>
+              <td th:text="${reserva.observaciones}"></td>
+              <td th:text="${reserva.total}"></td>
+              <td th:text="${reserva.usuario.nombre}"></td>
+              <td th:text="${reserva.usuario.email}"></td>
+              <!--RECORRER LOS SERVICIOS DE LA RESERVA-->
+              <td>
+                <span th:each="servicio: ${reserva.servicio}">
+                  <span th:text="${servicio.nombre}"></span>
+                  <br />
+                </span>
+              </td>
+              <td>
+                <a
+                  th:href="@{/reserva/modificarReserva/{id}(id =${reserva.id})}"
+                >
+                  <button class="btn btn-primary" type="button">
+                    Modificar reserva
+                  </button>
+                </a>
+              </td>
+              <td>
+                <a th:href="@{/reserva/cambiarEstado/{id}(id =${reserva.id})}">
+                  <button class="btn btn-primary" type="button">
+                    Modificar Estado reserva
+                  </button>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a th:href="@{/reserva/crearReserva}">
+        <button class="btn btn-primary btn-lg" type="button">
+          Crear reserva
+        </button>
+      </a>
+      <a th:href="@{/usuario}">
+        <button class="btn btn-primary btn-lg" type="button">
+          Ver usuarios
+        </button>
+      </a>
+      <a th:href="@{/servicios}">
+        <button class="btn btn-primary btn-lg" type="button">
+          Ver servicios
+        </button>
+      </a>
+      <a th:href="@{/espacios}">
+        <button class="btn btn-primary btn-lg" type="button">
+          Ver espacios
+        </button>
+      </a>
+      <a th:href="@{/reserva/reservasActivas}">
+        <button class="btn btn-primary btn-lg" type="button">
+          Ver reservas activas
+        </button>
+      </a>
+      <a th:href="@{/reserva}">
+        <button class="btn btn-primary btn-lg" type="button">
+          Ver reservas activas e incativas
+        </button>
+      </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
