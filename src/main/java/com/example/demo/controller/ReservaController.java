@@ -69,5 +69,11 @@ public class ReservaController {
         return "listar_reservas";
     }
         
+    @GetMapping("/consultaReserva/{id}")
+    public String consultaReserva(@PathVariable ("id") Long id, Model model) {
+        model.addAttribute("reserva", reservaService.findById(id));
+        return "consultar_reserva";
+    }
+    
     
 }
