@@ -3,40 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+
     <title>Crear servicio</title>
   </head>
   <body>
-    <h1>Crear servicio</h1>
-    <form
-      th:object="${servicio}"
-      th:action="@{/servicios/guardarServicio}"
-      method="post"
-    >
-      <input type="hidden" th:field="*{id}" />
-      <label>Nombre del servicio</label>
-      <input
-        type="text"
-        th:field="*{nombre}"
-        required
-        minlength="1"
-        maxlength="50"
-      />
-      <br />
-      <label>Descripción</label>
-      <input
-        type="text"
-        th:field="*{descripcion}"
-        required
-        minlength="1"
-        maxlength="200"
-      />
-      <br />
-      <label>Precio</label>
-      <input type="number" th:field="*{precio}" required min="1" />
-      <br />
-      <a th:href="@{servicios/guardarServicio}">
-        <button type="submit">Crear servicio</button>
-      </a>
-    </form>
+    <h1 class="text-center">Crear servicio</h1>
+    <div class="container">
+      <form
+        th:object="${servicio}"
+        th:action="@{/servicios/guardarServicio}"
+        method="post"
+      >
+        <input type="hidden" th:field="*{id}" />
+        <div class="mb-3">
+          <label for="nombreServicio" class="form-label"
+            >Nombre del servicio</label
+          >
+          <input
+            type="text"
+            th:field="*{nombre}"
+            required
+            minlength="1"
+            maxlength="50"
+            class="form-control"
+            id="nombreServicio"
+            placeholder="Nombre del servicio"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="descripcionServicio" class="form-label"
+            >Descripción</label
+          >
+          <input
+            type="text"
+            th:field="*{descripcion}"
+            required
+            minlength="1"
+            maxlength="200"
+            class="form-control"
+            id="descripcionServicio"
+            placeholder="Descripción del servicio"
+          />
+          <br />
+        </div>
+
+        <div class="mb-3">
+          <label for="precioServicio">Precio</label>
+          <input
+            type="number"
+            th:field="*{precio}"
+            required
+            min="1"
+            class="form-control"
+            id="precioServicio"
+            placeholder="Precio del servicio"
+          />
+          <br />
+        </div>
+        <div class="text-center">
+          <a th:href="@{servicios/guardarServicio}">
+            <button type="submit" class="btn btn-primary">
+              Crear servicio
+            </button>
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

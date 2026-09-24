@@ -1,0 +1,29 @@
+/*CSS PARA FORMULARIOS*/
+input {
+  background-color: #ffffff;
+  border-color: #ced4da;
+}
+
+input:hover {
+  background-color: rgb(239, 230, 246);
+}
+
+.form-control:focus {
+  background-color: #d8c5f2;
+}
+
+.btn-primary {
+  padding: 5px;
+  background-color: #6f42c1;
+  border-color: #6f42c1;
+}
+
+.btn-primary:hover {
+  background-color: #8f6cd2;
+  border-color: #8f6cd2;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #212529;
+}
