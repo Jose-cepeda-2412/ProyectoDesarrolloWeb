@@ -14,6 +14,7 @@ public class EspacioServiceimpl implements EspacioService {
     @Autowired 
     private EspacioRespository espacioRepository;
 
+
     @Override
     public Espacio findById(Long id) {
         return espacioRepository.findById(id).orElse(null);
@@ -34,12 +35,27 @@ public class EspacioServiceimpl implements EspacioService {
         Espacio espacio = espacioRepository.findById(id).get();
         if (espacio.getActivo() == true) {
             espacio.setActivo(false);
-            espacioRepository.save(espacio);
         }else if (espacio.getActivo() == false) {
             espacio.setActivo(true);
-            espacioRepository.save(espacio);
         }
         return espacioRepository.save(espacio);
+    }
+
+    @Override 
+    public void guardarEspacio(Espacio espacio){
+    
+        if (espacio.getId() == null) {
+            espacio.setActivo(true);   
+        }else{
+            Espacio espacioExistente = espacioRepository.findById(espacio.getId()).get();
+            espacio.setActivo(espacioExistente.getActivo());
+        }
+        espacioRepository.save(espacio);
+    }
+
+    @Override 
+    public Espacio crearEspacio(){
+        return new Espacio();
     }
     
 }
